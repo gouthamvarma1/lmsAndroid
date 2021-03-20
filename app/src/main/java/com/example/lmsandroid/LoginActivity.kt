@@ -25,9 +25,33 @@ class LoginActivity : AppCompatActivity() {
         textViewRegister.setOnClickListener{
             startActivity(Intent(this@LoginActivity,MainActivity::class.java))
         }
-       // setupUI();
-        //setupListeners();
-    }
+
+        buttonLogin.setOnClickListener {
+
+            val email = editTxtEmail.text.toString().trim()
+            val password = editTxtPassword.text.toString().trim()
+
+
+
+            if(email.isEmpty()){
+                editTextEmail.error = "Email required"
+                editTextEmail.requestFocus()
+                return@setOnClickListener
+            }
+
+
+            if(password.isEmpty()){
+                editTextPassword.error = "Password required"
+                editTextPassword.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (validateEmail())
+                Toast.makeText(this@LoginActivity,"login clicked",Toast.LENGTH_LONG).show();
+
+        }
+
+        }
 
 
 
@@ -57,31 +81,24 @@ class LoginActivity : AppCompatActivity() {
 
     fun validateEmail(): Boolean {
         var isValid = true
-        if (email?.let { isEmpty(it) }!!) {
-            email!!.setError("Email required")
-            isValid = false
-        } else {
             if (!isEmail(email!!)) {
                 email!!.setError("Invalid email id- please reenter!")
                 isValid = false
             }
-        }
-        if (password?.let { isEmpty(it) }!!) {
-            password!!.error = "Password required"
-            isValid = false
-        }
+
+
 
         if (isValid) {
             val emailValue: String = email?.getText().toString()
             val passwordValue = password!!.text.toString()
             if (emailValue == "bits@test.com" && passwordValue == "bits1234") {
                 //all validations done, starting activity.
-                val i = Intent(this@LoginActivity, LoginActivity::class.java)
+                val i = Intent(this@LoginActivity, CourseActivity::class.java)
                 startActivity(i)
                 //Closing this activity
                 finish()
             } else {
-                val t = Toast.makeText(this, "Wrong email or password!", Toast.LENGTH_SHORT)
+                val t = Toast.makeText(this, "Wrong email or password!", Toast.LENGTH_LONG)
                 t.show()
             }
         }
@@ -96,8 +113,8 @@ class LoginActivity : AppCompatActivity() {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    fun isEmpty(text: EditText): Boolean {
-        val str: CharSequence = text.text.toString()
-        return TextUtils.isEmpty(str)
-    }
+//    fun isEmpty(text: EditText): Boolean {
+//        val str: CharSequence = text.text.toString()
+//        return TextUtils.isEmpty(str)
+//    }
 }
