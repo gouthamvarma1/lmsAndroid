@@ -49,16 +49,11 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-//    private fun validateEmail(): Boolean {
-//        val isValid =true
-//        return isValid
-//    }
-
 
     fun validateEmail(): Boolean {
         var isValid = true
         if (email?.let { isEmpty(it) }!!) {
-            email!!.setError("Enter email id")
+            email!!.setError("Email required")
             isValid = false
         } else {
             if (!isEmail(email!!)) {
@@ -67,27 +62,18 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         if (password?.let { isEmpty(it) }!!) {
-            password!!.error = "Password not entered"
+            password!!.error = "Password required"
             isValid = false
         }
-//        else {
-//            if (password!!.text.toString().length < 4) {
-//                password!!.error = "Password must be at least 4 chars long!"
-//                isValid = false
-//            }
-//        }
 
-        //check email and password
-        //IMPORTANT: here should be call to backend or safer function for local check; For example simple check is cool
-        //For example simple check is cool
         if (isValid) {
             val emailValue: String = email?.getText().toString()
             val passwordValue = password!!.text.toString()
             if (emailValue == "bits@test.com" && passwordValue == "bits1234") {
-                //everything checked we open new activity
+                //all validations done, starting activity.
                 val i = Intent(this@LoginActivity, LoginActivity::class.java)
                 startActivity(i)
-                //we close this activity
+                //Closing this activity
                 finish()
             } else {
                 val t = Toast.makeText(this, "Wrong email or password!", Toast.LENGTH_SHORT)
