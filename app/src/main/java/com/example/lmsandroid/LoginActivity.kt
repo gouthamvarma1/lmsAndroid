@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -20,17 +22,20 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        setupUI();
-        setupListeners();
+        textViewRegister.setOnClickListener{
+            startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+        }
+       // setupUI();
+        //setupListeners();
     }
 
 
 
     private fun setupUI() {
-        email = findViewById(R.id.email)
-        password = findViewById(R.id.password)
-        register = findViewById(R.id.register)
-        login = findViewById(R.id.login)
+        email = findViewById(R.id.editTextEmail)
+        password = findViewById(R.id.editTextPassword)
+        register = findViewById(R.id.buttonSignUp)
+        login = findViewById(R.id.buttonLogin)
     }
 
     private fun setupListeners() {
