@@ -2,20 +2,14 @@ package com.example.lmsandroid
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.IOException
 import androidx.appcompat.app.AlertDialog
 import android.widget.Toast
-import com.example.lmsandroid.api.RetrofitClient
 import okhttp3.*
 import okhttp3.RequestBody.Companion.toRequestBody
-
-
-
-/*import simplifiedcoding.net.kotlinretrofittutorial.R
-import simplifiedcoding.net.kotlinretrofittutorial.api.RetrofitClient
-import simplifiedcoding.net.kotlinretrofittutorial.models.DefaultResponse*/
 
 
 
@@ -68,58 +62,38 @@ class   MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-            val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)
-            alertDialog.setTitle("AlertDialog")
-            alertDialog.setMessage("POST Failed")
-            alertDialog.setPositiveButton(
-                "yes"
-            ) { _, _ ->
-                Toast.makeText(this@MainActivity, "Alert dialog closed.", Toast.LENGTH_LONG).show()
-            }
-            alertDialog.setNegativeButton(
-                "No"
-            ) { _, _ -> }
-            val alert: AlertDialog = alertDialog.create()
-            alert.setCanceledOnTouchOutside(false)
-            alert.show()
-
            val payload = "{\n" +
                      "    \"name\": \"morpheus\",\n" +
                      "    \"job\": \"leader\"\n" +
                      "}"
 
-             val okHttpClient = OkHttpClient()
-             val requestBody = payload.toRequestBody()
-             val request = Request.Builder()
-                .method("POST", requestBody)
-                .url("https://reqres.in/api/users")
-                .build()
-                 okHttpClient.newCall(request).enqueue(object : Callback {
-                 override fun onFailure(call: Call, e: IOException) {
-                     Toast.makeText(this@MainActivity,"failed",Toast.LENGTH_LONG)
-                 }
+            val url= "https://reqres.in/api/users"
 
-                 override fun onResponse(call: Call, response: Response) {
-                     Toast.makeText(this@MainActivity,"success",Toast.LENGTH_LONG)
-                 }
-             })
+            registerUser(url,payload)
 
-
-          /*  RetrofitClient.instance.createUser(email, password, password2, fullName)
-                .enqueue(object: Callback<DefaultResponse>{
-                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
-                    }
-
-                    override fun onResponse(call: Call<DefaultResponse>, response: Response<DefaultResponse>) {
-                        Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_LONG).show()
-                    }
-
-                })*/
 
         }
+    }
+
+    fun registerUser(url:String,payload:String ) {
+
+        val okHttpClient = OkHttpClient()
+        val requestBody = payload.toRequestBody()
+        val request = Request.Builder()
+            .method("POST", requestBody)
+            .url(url)
+            .build()
+        okHttpClient.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Toast.makeText(this@MainActivity,"failed",Toast.LENGTH_LONG)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                Looper.prepare()
+                Toast.makeText(this@MainActivity,"Response code:"+response.code,Toast.LENGTH_LONG).show()
+
+                Looper.loop()
+            }
+        })
     }
 }
