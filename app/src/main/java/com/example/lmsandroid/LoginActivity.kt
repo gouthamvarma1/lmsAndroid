@@ -28,55 +28,34 @@ class LoginActivity : AppCompatActivity() {
 
         buttonLogin.setOnClickListener {
 
-            val email = editTxtEmail.text.toString().trim()
+            val     email = editTxtEmail.text.toString().trim()
             val password = editTxtPassword.text.toString().trim()
 
 
 
             if(email.isEmpty()){
-                editTextEmail.error = "Email required"
-                editTextEmail.requestFocus()
+                editTxtEmail.error = "Email required"
+                editTxtEmail.requestFocus()
                 return@setOnClickListener
             }
 
-
+            if(!isEmail(editTxtEmail)) {
+                editTxtEmail.error = "Email format is incorrect"
+                editTxtEmail.requestFocus()
+                return@setOnClickListener
+            }
             if(password.isEmpty()){
-                editTextPassword.error = "Password required"
-                editTextPassword.requestFocus()
+                editTxtPassword.error = "Password required"
+                editTxtPassword.requestFocus()
                 return@setOnClickListener
             }
 
-            if (validateEmail())
-                Toast.makeText(this@LoginActivity,"login clicked",Toast.LENGTH_LONG).show();
+            startActivity(Intent(this@LoginActivity,ModuleActivity::class.java))
+
 
         }
 
         }
-
-
-
-    private fun setupUI() {
-        email = findViewById(R.id.editTextEmail)
-        password = findViewById(R.id.editTextPassword)
-        register = findViewById(R.id.buttonSignUp)
-        login = findViewById(R.id.buttonLogin)
-    }
-
-    private fun setupListeners() {
-        login!!.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                if (validateEmail())
-                    Toast.makeText(this@LoginActivity,"login clicked",Toast.LENGTH_LONG).show();
-
-            }
-        })
-        register!!.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                //Intent i = new Intent(LoginActivity.this, RegistrationActivity.class);
-                //startActivity(i);
-            }
-        })
-    }
 
 
     fun validateEmail(): Boolean {
@@ -113,8 +92,5 @@ class LoginActivity : AppCompatActivity() {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-//    fun isEmpty(text: EditText): Boolean {
-//        val str: CharSequence = text.text.toString()
-//        return TextUtils.isEmpty(str)
-//    }
+
 }

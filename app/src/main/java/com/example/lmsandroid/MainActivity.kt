@@ -3,6 +3,9 @@ package com.example.lmsandroid
 import android.content.Intent
 import android.os.Bundle
 import android.os.Looper
+import android.text.TextUtils
+import android.util.Patterns
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.IOException
@@ -36,6 +39,11 @@ class   MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if(!isEmail(editTextEmail)){
+                editTextEmail.error = "Email format is incorrect"
+                editTextEmail.requestFocus()
+                return@setOnClickListener
+            }
 
             if(password.isEmpty()){
                 editTextPassword.error = "Password required"
@@ -95,5 +103,10 @@ class   MainActivity : AppCompatActivity() {
                 Looper.loop()
             }
         })
+    }
+
+    fun isEmail(text: EditText): Boolean {
+        val email: CharSequence = text.text.toString()
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }
