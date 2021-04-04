@@ -18,6 +18,7 @@ class LoginActivity : AppCompatActivity() {
     var password: EditText? = null
     var register: Button? = null
     var login: Button? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -50,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            startActivity(Intent(this@LoginActivity,ModuleActivity::class.java))
+            startActivity(Intent(this@LoginActivity,CourseActivity::class.java))
 
 
         }

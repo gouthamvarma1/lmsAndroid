@@ -52,11 +52,11 @@ class CourseActivity : AppCompatActivity() {
 
         Log.i(TAG, "In Course Activity")
         // inserting complete table details in this text field
-        val resultView = findViewById<View>(R.id.res) as TextView
+        val resultView = findViewById<View>(R.id.result) as TextView
 
         // creating a cursor object of the
         // content URI
-        val cursor = contentResolver.query(Uri.parse("content://com.example.lmsandroid.CourseProvider/course"), null, null, null, null)
+        val cursor = contentResolver.query(Uri.parse("content://com.example.lmsandroid.CourseProvider/course"), null, null, null, "_id ASC")
 
         // iteration of the cursor
         // to print whole table

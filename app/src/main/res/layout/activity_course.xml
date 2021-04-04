@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CourseActivity">
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:background="@color/colorPrimaryBackground"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +27,7 @@
             android:layout_marginBottom="70dp"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@android:color/holo_green_dark"
+            android:textColor="@android:color/white"
             android:textSize="36sp"
             android:textStyle="bold" />
 
@@ -34,11 +35,9 @@
             android:id="@+id/courseName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="40dp"
-       />
-
+            android:drawablePadding="5dp"
+            android:hint="course name"
+            android:inputType="text" />
 
         <Button
             android:id="@+id/insertButton"
@@ -48,12 +47,11 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
+            android:background="@color/colorPrimaryDark"
             android:onClick="onClickAddDetails"
             android:text="Add Course"
-            android:background="#4CAF50"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorFormBackground"
             android:textStyle="bold" />
 
         <Button
@@ -64,34 +62,24 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
+            android:background="@color/colorPrimaryDark"
             android:onClick="onClickShowDetails"
-            android:text="List Courses"
-            android:background="#4CAF50"
+            android:text="Course Catalogue"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorFormBackground"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/res"
+            android:id="@+id/result"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_height="333dp"
             android:clickable="false"
             android:ems="10"
-            android:textColor="@android:color/holo_green_dark"
+            android:textColor="@color/colorFormBackground"
             android:textSize="18sp"
             android:textStyle="bold" />
 
+
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
- />
 </androidx.constraintlayout.widget.ConstraintLayout>
