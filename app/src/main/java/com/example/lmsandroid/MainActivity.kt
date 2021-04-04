@@ -98,8 +98,7 @@ class   MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call, response: Response) {
                 Looper.prepare()
-                Toast.makeText(this@MainActivity,"Response code:"+response.code,Toast.LENGTH_LONG).show()
-
+                Toast.makeText(this@MainActivity,"Registration Successful",Toast.LENGTH_LONG).show()
                 Looper.loop()
             }
         })
