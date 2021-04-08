@@ -14,11 +14,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_course.*
 import kotlin.math.log
 
 val TAG = "CourseActivity"
 
-val URL = "http://192.168.0.105/api/course/courses/"
+val URL = "https://768ff066e77d.ngrok.io/api/course/courses/"
 
 class CourseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +57,7 @@ class CourseActivity : AppCompatActivity() {
 
         Log.i(TAG, "In Course Activity")
         // inserting complete table details in this text field
-        val resultView = findViewById<View>(R.id.result) as TextView
+        val resultView = result
 
         // creating a cursor object of the
         // content URI
