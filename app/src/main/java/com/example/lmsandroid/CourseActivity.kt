@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.nfc.Tag
 import android.util.Log
@@ -24,7 +25,6 @@ class CourseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course)
     }
-    CourseActivity
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
@@ -79,17 +79,21 @@ class CourseActivity : AppCompatActivity() {
     ${cursor.getString(cursor.getColumnIndex("_id"))}-${cursor.getString(cursor.getColumnIndex("name"))} 
     """.trimIndent()
                 )
-                cursor.moveToNext()
-                Thread {
-                    // post that in the API service  http://192.168.0.105/api/course/courses/
-                    {
-                        Name = strBuild,
-                        Credit = 10
-                    }
-//                        call servie function for posting in api
-//                    and show a toast message on screen
-                }
 
+                    // post that in the API service  http://192.168.0.105/api/course/courses/
+                    var serviceIntent = Intent(this, CourseContentService::class.java)
+
+                    serviceIntent.putExtra("COURSE_URL", URL)
+                    serviceIntent.putExtra(
+                        "COURSE_NAME",
+                        """${cursor.getString(cursor.getColumnIndex("name"))}"""
+                    )
+                    serviceIntent.putExtra("COURSE_CREDIT", 10)
+                    startService(serviceIntent);
+                    // call service function for posting in api
+                    Log.d("service started","strted")
+
+                cursor.moveToNext()
 
             }
             resultView.text = strBuild
