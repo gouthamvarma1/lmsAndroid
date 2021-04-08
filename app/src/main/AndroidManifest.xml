@@ -14,29 +14,34 @@
         <activity
             android:name=".ModuleActivity"
             android:label="@string/title_activity_module"
-            android:theme="@style/Theme.Lmsandroid.NoActionBar"></activity>
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:theme="@style/Theme.Lmsandroid.NoActionBar"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:parentActivityName=".LoginActivity">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CourseActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity
+            android:name=".CourseActivity"
+            android:parentActivityName=".LoginActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
 
+        <service android:name=".CourseContentService"></service>
         <provider
             android:name=".CourseProvider"
             android:authorities="com.example.lmsandroid.CourseProvider" />

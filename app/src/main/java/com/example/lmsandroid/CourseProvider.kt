@@ -14,15 +14,15 @@ class CourseProvider : ContentProvider() {
         val PROVIDER_NAME = "com.example.lmsandroid.CourseProvider"
         val URL = "content://$PROVIDER_NAME/course"
         const val uriCode = 1
+
         // parsing the content URI
         val CONTENT_URI = Uri.parse(URL)
         var uriMatcher: UriMatcher? = null
 
         const val Description = "description"
         const val NAME = "name"
-        const val TABLE_NAME ="course1"
+        const val TABLE_NAME = "course1"
         private val COURSE_PROJECTION_MAP: HashMap<String, String>? = null
-
 
 
         init {
@@ -33,17 +33,17 @@ class CourseProvider : ContentProvider() {
 
             // to access whole table
             uriMatcher!!.addURI(
-                    PROVIDER_NAME,
-                    "course",
-                    uriCode
+                PROVIDER_NAME,
+                "course",
+                uriCode
             )
 
             // to access a particular row
             // of the table
             uriMatcher!!.addURI(
-                    PROVIDER_NAME,
-                    "course/*",
-                    uriCode
+                PROVIDER_NAME,
+                "course/*",
+                uriCode
             )
         }
 
@@ -52,6 +52,7 @@ class CourseProvider : ContentProvider() {
 
 
     }
+
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
         val rowID = db!!.insert(TABLE_NAME, "", values)
 
@@ -69,10 +70,9 @@ class CourseProvider : ContentProvider() {
     }
 
 
-
     override fun query(
-            uri: Uri, projection: Array<String>?, selection: String?,
-            selectionArgs: Array<String>?, sortOrder: String?
+        uri: Uri, projection: Array<String>?, selection: String?,
+        selectionArgs: Array<String>?, sortOrder: String?
     ): Cursor? {
         var sortOrder = sortOrder
         val qb = SQLiteQueryBuilder()
@@ -85,8 +85,8 @@ class CourseProvider : ContentProvider() {
             sortOrder = NAME
         }
         val c = qb.query(
-                db, projection, selection, selectionArgs, null,
-                null, sortOrder
+            db, projection, selection, selectionArgs, null,
+            null, sortOrder
         )
         c.setNotificationUri(context!!.contentResolver, uri)
         return c
@@ -102,10 +102,9 @@ class CourseProvider : ContentProvider() {
     }
 
 
-
     override fun update(
-            uri: Uri, values: ContentValues?, selection: String?,
-            selectionArgs: Array<String>?
+        uri: Uri, values: ContentValues?, selection: String?,
+        selectionArgs: Array<String>?
     ): Int {
         var count = 0
         count = when (uriMatcher!!.match(uri)) {
@@ -117,9 +116,9 @@ class CourseProvider : ContentProvider() {
     }
 
     override fun delete(
-            uri: Uri,
-            selection: String?,
-            selectionArgs: Array<String>?
+        uri: Uri,
+        selection: String?,
+        selectionArgs: Array<String>?
     ): Int {
         var count = 0
         count = when (uriMatcher!!.match(uri)) {
@@ -139,15 +138,16 @@ class CourseProvider : ContentProvider() {
 
     public class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, "CourseDB", null, 1) {
         override fun onCreate(db: SQLiteDatabase?) {
-            db?.execSQL("create table ${TABLE_NAME} (" +
-                    "_id integer primary key autoincrement, " +
-                    "${NAME})"
+            db?.execSQL(
+                "create table ${TABLE_NAME} (" +
+                        "_id integer primary key autoincrement, " +
+                        "${NAME})"
             )
         }
 
         override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
             if (db != null) {
-                db.execSQL("DROP TABLE IF EXISTS " +  TABLE_NAME)
+                db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME)
             };
 
             onCreate(db);

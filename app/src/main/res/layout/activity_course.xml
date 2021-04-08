@@ -4,82 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryBackground"
     tools:context=".CourseActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:background="@color/colorPrimaryBackground"
-        android:orientation="vertical"
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/linearLayout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:background="@color/colorPrimaryBackground"-->
+    <!--        android:orientation="vertical"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.13"-->
+    <!--        tools:ignore="MissingConstraints">-->
+
+
+    <EditText
+        android:id="@+id/courseName"
+        android:layout_width="399dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="40dp"
+        android:autofillHints=""
+        android:drawablePadding="5dp"
+        android:hint="@string/course_name"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintVertical_bias="0.096" />
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="70dp"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@android:color/white"
-            android:textSize="36sp"
-            android:textStyle="bold" />
+    <Button
+        android:id="@+id/insertButton"
+        android:layout_width="367dp"
+        android:layout_height="64dp"
+        android:background="@color/colorPrimaryDark"
+        android:onClick="onClickAddDetails"
+        android:text="@string/add_course"
+        android:textAlignment="center"
+        android:textColor="@color/colorFormBackground"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/loadButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseName"
+        app:layout_constraintVertical_bias="0.374" />
 
-        <EditText
-            android:id="@+id/courseName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="5dp"
-            android:hint="course name"
-            android:inputType="text" />
+    <Button
+        android:id="@+id/loadButton"
+        android:layout_width="366dp"
+        android:layout_height="66dp"
+        android:background="@color/colorPrimaryDark"
+        android:onClick="onClickShowDetails"
+        android:text="@string/course_catalogue"
+        android:textAlignment="center"
+        android:textColor="@color/colorFormBackground"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insertButton" />
 
-        <Button
-            android:id="@+id/insertButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/colorPrimaryDark"
-            android:onClick="onClickAddDetails"
-            android:text="Add Course"
-            android:textAlignment="center"
-            android:textColor="@color/colorFormBackground"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/loadButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/colorPrimaryDark"
-            android:onClick="onClickShowDetails"
-            android:text="Course Catalogue"
-            android:textAlignment="center"
-            android:textColor="@color/colorFormBackground"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/result"
-            android:layout_width="match_parent"
-            android:layout_height="333dp"
-            android:clickable="false"
-            android:ems="10"
-            android:textColor="@color/colorFormBackground"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="393dp"
+        android:layout_height="292dp"
+        android:clickable="false"
+        android:ems="10"
+        android:textColor="@color/colorFormBackground"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loadButton" />
 
 
-    </LinearLayout>
+    <!--    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
